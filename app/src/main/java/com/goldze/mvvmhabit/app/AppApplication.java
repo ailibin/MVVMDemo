@@ -1,7 +1,14 @@
 package com.goldze.mvvmhabit.app;
 
+import android.content.Context;
+
+import androidx.multidex.MultiDex;
+import androidx.room.Room;
+
 import com.goldze.mvvmhabit.BuildConfig;
 import com.goldze.mvvmhabit.R;
+import com.goldze.mvvmhabit.database.UserDaoManager;
+import com.goldze.mvvmhabit.database.data.AppDatabase;
 import com.goldze.mvvmhabit.ui.login.LoginActivity;
 import com.squareup.leakcanary.LeakCanary;
 
@@ -14,6 +21,14 @@ import me.goldze.mvvmhabit.utils.KLog;
  */
 
 public class AppApplication extends BaseApplication {
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        // 主要是添加下面这句代码
+        MultiDex.install(this);
+        super.attachBaseContext(base);
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -25,7 +40,11 @@ public class AppApplication extends BaseApplication {
         if (!LeakCanary.isInAnalyzerProcess(this)) {
             LeakCanary.install(this);
         }
+        //初始化用户数据库
+        UserDaoManager.getInstance().initDataBase(getApplicationContext());
     }
+
+
 
     private void initCrash() {
         CaocConfig.Builder.create()
@@ -41,4 +60,5 @@ public class AppApplication extends BaseApplication {
 //                .eventListener(new YourCustomEventListener()) //崩溃后的错误监听
                 .apply();
     }
+
 }

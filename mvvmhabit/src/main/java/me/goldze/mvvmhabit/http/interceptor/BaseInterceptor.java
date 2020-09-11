@@ -1,6 +1,7 @@
 package me.goldze.mvvmhabit.http.interceptor;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -18,10 +19,24 @@ public class BaseInterceptor implements Interceptor {
         this.headers = headers;
     }
 
+    //头部数据
+    public Map<String, String> getCommonHeader() {
+        Map<String, String> headers = new HashMap<>();
+        headers.put("hs-token", "");
+        headers.put("hs-device-type", "'andapp'");
+        headers.put("hs-lang", "'zh'");
+        headers.put("hs-lang", "'zh'");
+        return headers;
+    }
+
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request.Builder builder = chain.request()
                 .newBuilder();
+        if (headers == null) {
+            //取默认的配置
+            this.headers = getCommonHeader();
+        }
         if (headers != null && headers.size() > 0) {
             Set<String> keys = headers.keySet();
             for (String headerKey : keys) {
