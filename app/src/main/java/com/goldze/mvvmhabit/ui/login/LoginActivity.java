@@ -7,6 +7,8 @@ import androidx.annotation.Nullable;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 
+import com.ailibin.codeutil.util.BarUtils;
+import com.ailibin.codeutil.util.StatusBarUtil;
 import com.goldze.mvvmhabit.BR;
 import com.goldze.mvvmhabit.R;
 import com.goldze.mvvmhabit.app.AppViewModelFactory;
@@ -27,7 +29,13 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
     @Override
     public void initData() {
         //初始化数据
+        StatusBarUtil.StatusBarLightModeNew(this);
         super.initData();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 
     @Override

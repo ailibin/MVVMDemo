@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--toolbar 左边距-->
+    <dimen name="toolbar_back_btn_padding_left">15dp</dimen>
+    <!--toolbar 右边距-->
+    <dimen name="toolbar_back_btn_padding_right">15dp</dimen>
+
+    <!--margin和padding的相关尺寸-->
+    <dimen name="mar_pad_tiny">3dp</dimen>
+    <dimen name="mar_pad_small">5dp</dimen>
+    <dimen name="mar_pad_mid">12dp</dimen>
+    <dimen name="mar_pad_mid_b">15dp</dimen>
+    <dimen name="mar_pad_big">20dp</dimen>
+    <dimen name="margin_screen_left">15dp</dimen>
+    <dimen name="margin_screen_right">15dp</dimen>
+    <dimen name="margin_login">24dp</dimen>
+    <dimen name="padding_grid_tag">12dp</dimen>
+
+
+
+</resources>

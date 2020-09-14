@@ -16,10 +16,28 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets{
+        main{
+            jniLibs.srcDir(['libs'])
+        }
+    }
+
+
+    //引用aar
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+
+
 }
 
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
+//    api(name: 'codeUtil', ext: 'aar')
+    implementation project(':codeUtil')
+
     //support
     api rootProject.ext.support["support-v4"]
     api rootProject.ext.support["appcompat-v7"]

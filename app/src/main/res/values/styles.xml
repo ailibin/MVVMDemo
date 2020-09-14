@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!--将ActionBar隐藏,这里使用ToolBar-->
         <item name="windowActionBar">false</item>
         <!-- 使用 API Level 22以上编译的话，要拿掉前綴字 -->
@@ -13,11 +13,37 @@
         <!--colorAccent 对应EditText编辑时、RadioButton选中、CheckBox等选中时的颜色。-->
         <item name="colorAccent">@color/colorPrimaryDark</item>
         <item name="android:windowBackground">@color/white</item>
+        <!--页面跳转的动画配置-->
+        <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="toolbarStyle">@style/ClubToolbar</item>
+        <item name="android:textColorHint">@color/textColorHint</item>
+        <item name="toolbarNavigationButtonStyle">@style/ToolbarNavigationButtonStyle</item>
     </style>
+
+    <style name="whiteStatusTheme" parent="AppTheme" />
 
     <style name="ViewLineStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>
         <item name="android:background">@color/viewLineColor</item>
     </style>
+
+    <style name="ClubToolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="contentInsetStart">0dp</item><!-- 设置该属性解决空白部分-->
+    </style>
+
+    <style name="AnimationActivity" mce_bogus="1" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/push_left_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/push_left_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/push_right_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/push_right_out</item>
+    </style>
+
+    <style name="ToolbarNavigationButtonStyle" parent="Widget.AppCompat.Toolbar.Button.Navigation">
+        <item name="android:minWidth">0dp</item>
+        <item name="android:paddingLeft">@dimen/toolbar_back_btn_padding_left</item>
+        <item name="android:paddingRight">@dimen/toolbar_back_btn_padding_right</item>
+    </style>
+
 </resources>

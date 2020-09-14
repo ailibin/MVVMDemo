@@ -1,5 +1,7 @@
 package me.goldze.mvvmhabit.base;
 
+import android.view.View;
+import android.view.ViewGroup;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProviders;
@@ -11,12 +13,15 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.ailibin.codeutil.util.BarUtils;
+import com.ailibin.codeutil.util.StatusBarUtil;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Map;
 
+import me.goldze.mvvmhabit.R;
 import me.goldze.mvvmhabit.base.BaseViewModel.ParameterField;
 import me.goldze.mvvmhabit.bus.Messenger;
 import me.goldze.mvvmhabit.utils.MaterialDialogUtils;
@@ -58,7 +63,7 @@ public abstract class BaseActivity<V extends ViewDataBinding, VM extends BaseVie
         if (viewModel != null) {
             viewModel.removeRxBus();
         }
-        if(binding != null){
+        if (binding != null) {
             binding.unbind();
         }
     }
@@ -68,7 +73,8 @@ public abstract class BaseActivity<V extends ViewDataBinding, VM extends BaseVie
      */
     private void initViewDataBinding(Bundle savedInstanceState) {
         //DataBindingUtil类需要在project的build中配置 dataBinding {enabled true }, 同步后会自动关联android.databinding包
-        binding = DataBindingUtil.setContentView(this, initContentView(savedInstanceState));
+        int layoutId = initContentView(savedInstanceState);
+        binding = DataBindingUtil.setContentView(this, layoutId);
         viewModelId = initVariableId();
         viewModel = initViewModel();
         if (viewModel == null) {
@@ -90,6 +96,11 @@ public abstract class BaseActivity<V extends ViewDataBinding, VM extends BaseVie
         getLifecycle().addObserver(viewModel);
         //注入RxLifecycle生命周期
         viewModel.injectLifecycleProvider(this);
+
+        //从根部设置状态栏,需要等binding执行玩rxLifecicle的生命周期方法之后执行
+        View rootView = ((ViewGroup) findViewById(android.R.id.content)).getChildAt(0);
+        StatusBarUtil.addStatusBarView(rootView, R.color.transparent);
+
     }
 
     //刷新布局

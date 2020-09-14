@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="textColor">#202020</color>
+    <color name="textColorHint">#A0A0A0</color>
+    <color name="textColorVice">#6C6C6C</color>
+    <color name="viewLineColor">#F0F0F0</color>
+    <color name="transparent">#00ffffff</color>
+    <color name="bg_all">#f0f0f0</color>
+
+    <color name="black">#000</color>
+    <color name="black3">#333</color>
+    <color name="black6">#666</color>
+    <color name="black9">#999</color>
+
+
+    <!-- 主题的其他配置-->
+    <color name="gray_text_hint">#aaa</color>
+    <color name="light_white">#DDD</color>
+
+
+</resources>
